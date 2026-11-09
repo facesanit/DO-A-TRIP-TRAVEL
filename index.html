@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do A Trip - วางแผนเที่ยวไทย 77 จังหวัด</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Prompt & Kanit) -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #f8fafc;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Kanit', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.7)), 
+                        url('https://images.unsplash.com/photo-1506665531195-3566fe296661?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+        .region-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="text-slate-700 antialiased flex flex-col min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 bg-sky-500 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-sky-500/30 group-hover:bg-sky-600 transition-colors">
+                    <i class="fa-solid fa-paper-plane text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-bold tracking-tight text-slate-900 font-heading block leading-none">Do A Trip</span>
+                    <span class="text-xs text-sky-600 font-medium tracking-wide">วางแผนเที่ยวไทย 77 จังหวัด</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                <a href="#" class="text-sky-600 font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-compass"></i> หน้าแรก
+                </a>
+                <a href="#regions" class="hover:text-sky-600 transition-colors">ภูมิภาค</a>
+                <a href="#provinces" class="hover:text-sky-600 transition-colors">จังหวัดทั้งหมด</a>
+                <a href="#ai-planner" class="hover:text-sky-600 transition-colors flex items-center gap-1.5 text-amber-600 font-semibold bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> AI ช่วยจัดทริป
+                </a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <a href="#ai-planner" class="hidden sm:inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-5 py-2.5 rounded-xl font-medium shadow-md shadow-sky-500/20 transition-all hover:shadow-lg hover:shadow-sky-500/30">
+                    <i class="fa-solid fa-plus"></i> วางแผนทริปใหม่
+                </a>
+                <button class="md:hidden text-slate-600 text-2xl p-2" id="mobile-menu-btn" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3">
+        <a href="#" class="block font-medium text-sky-600 py-2">หน้าแรก</a>
+        <a href="#regions" class="block font-medium text-slate-600 py-2">ภูมิภาค</a>
+        <a href="#provinces" class="block font-medium text-slate-600 py-2">จังหวัดทั้งหมด</a>
+        <a href="#ai-planner" class="block font-medium text-amber-600 py-2">AI ช่วยจัดทริป</a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="hero-bg text-white py-24 lg:py-32 relative flex items-center justify-center">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-sm font-medium text-sky-200 mb-4 border border-white/30">
+                    🌍 ครอบคลุมจุดเช็คอินทั่วไทย 77 จังหวัด
+                </span>
+                <h1 class="text-4xl md:text-6xl font-bold font-heading leading-tight mb-6 drop-shadow-md">
+                    ค้นพบเสน่ห์เมืองไทย<br class="hidden sm:inline"> วางแผนเที่ยวแบบที่คุณชอบ
+                </h1>
+                <p class="text-lg md:text-xl text-slate-200 mb-8 max-w-2xl mx-auto font-light">
+                    รวบรวมสถานที่ท่องเที่ยว ที่กิน ที่พัก และแผนการเดินทางที่จะทำให้ทุกทริปของคุณเป็นเรื่องง่าย
+                </p>
+
+                <!-- Search Bar Container -->
+                <div class="bg-white p-3 rounded-2xl shadow-2xl max-w-2xl mx-auto flex flex-col sm:flex-row gap-3 border border-slate-100">
+                    <div class="flex-1 flex items-center px-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <i class="fa-solid fa-magnifying-glass text-slate-400 text-lg mr-3"></i>
+                        <input type="text" placeholder="ค้นหาจังหวัด เช่น เชียงใหม่, ภูเก็ต, น่าน..." class="w-full bg-transparent py-3 text-slate-800 placeholder-slate-400 focus:outline-none text-base">
+                    </div>
+                    <button class="bg-sky-500 hover:bg-sky-600 text-white font-medium px-8 py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                        <span>ค้นหา</span>
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-3 gap-4 max-w-lg mx-auto mt-12 text-center border-t border-white/10 pt-6">
+                    <div>
+                        <div class="text-2xl md:text-3xl font-bold font-heading text-sky-400">77</div>
+                        <div class="text-xs md:text-sm text-slate-300">จังหวัดทั่วไทย</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl md:text-3xl font-bold font-heading text-sky-400">6</div>
+                        <div class="text-xs md:text-sm text-slate-300">ภูมิภาคยอดฮิต</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl md:text-3xl font-bold font-heading text-sky-400">100%</div>
+                        <div class="text-xs md:text-sm text-slate-300">จัดทริปฟรี</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regions Section -->
+        <section id="regions" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                    <div>
+                        <h2 class="text-3xl font-bold text-slate-900 font-heading">เลือกเที่ยวตามภูมิภาค</h2>
+                        <p class="text-slate-500 mt-2">สำรวจจุดเด่นและบรรยากาศของแต่ละภาคในประเทศไทย</p>
+                    </div>
+                    <a href="#provinces" class="mt-4 md:mt-0 text-sky-600 hover:text-sky-700 font-medium inline-flex items-center gap-2">
+                        ดูจังหวัดทั้งหมด <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Region Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- North -->
+                    <div class="region-card bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer group">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?auto=format&fit=crop&w=800&q=80" alt="ภาคเหนือ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-slate-700">9 จังหวัด</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 font-heading mb-2 group-hover:text-sky-600 transition-colors">ภาคเหนือ</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2">สัมผัสลมหนาว ชมทะเลหมอก ภูเขาสูง และวัฒนธรรมล้านนาอันทรงคุณค่า</p>
+                        </div>
+                    </div>
+
+                    <!-- Central -->
+                    <div class="region-card bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer group">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80" alt="ภาคกลาง" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-slate-700">22 จังหวัด</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 font-heading mb-2 group-hover:text-sky-600 transition-colors">ภาคกลาง</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2">ศูนย์รวมประวัติศาสตร์ วัดวาอาราม สายน้ำเจ้าพระยา และวิถีชีวิตริมคลอง</p>
+                        </div>
+                    </div>
+
+                    <!-- Northeast -->
+                    <div class="region-card bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer group">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1628083836262-95f7004f1a07?auto=format&fit=crop&w=800&q=80" alt="ภาคตะวันออกเฉียงเหนือ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-slate-700">20 จังหวัด</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 font-heading mb-2 group-hover:text-sky-600 transition-colors">ภาคตะวันออกเฉียงเหนือ (อีสาน)</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2">ดินแดนอารยธรรมโบราณ ธรรมชาติอันอุดมสมบูรณ์ และรสชาติอาหารสุดแซ่บ</p>
+                        </div>
+                    </div>
+
+                    <!-- South -->
+                    <div class="region-card bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer group">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=800&q=80" alt="ภาคใต้" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-slate-700">14 จังหวัด</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 font-heading mb-2 group-hover:text-sky-600 transition-colors">ภาคใต้</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2">สวรรค์แห่งท้องทะเล ชายหาดขาว เกาะสวยงามระดับโลก และอาหารรสจัดจ้าน</p>
+                        </div>
+                    </div>
+
+                    <!-- East -->
+                    <div class="region-card bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer group">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="ภาคตะวันออก" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-slate-700">7 จังหวัด</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 font-heading mb-2 group-hover:text-sky-600 transition-colors">ภาคตะวันออก</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2">พักผ่อนริมชายหาดใกล้นคร ทะเลสวย ผลไม้อร่อย และเกาะยอดนิยม</p>
+                        </div>
+                    </div>
+
+                    <!-- West -->
+                    <div class="region-card bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer group">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" alt="ภาคตะวันตก" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-slate-700">5 จังหวัด</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 font-heading mb-2 group-hover:text-sky-600 transition-colors">ภาคตะวันตก</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2">ผืนป่าสมบูรณ์ น้ำตกสวยงาม นอนแพริมน้ำ และบรรยากาศสุดชิลล์</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Assistant Feature Banner -->
+        <section id="ai-planner" class="py-16 bg-slate-900 text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
+                            <i class="fa-solid fa-sparkles"></i> ฟีเจอร์อัจฉริยะ ใหม่ล่าสุด
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold font-heading leading-tight mb-6">
+                            ให้ AI ช่วยออกแบบทริปที่สมบูรณ์แบบสำหรับคุณ
+                        </h2>
+                        <p class="text-slate-300 mb-8 leading-relaxed font-light">
+                            เพียงแค่ระบุจังหวัด งบประมาณ และจำนวนวันที่ต้องการ AI ของเราจะช่วยจัดแผนการเดินทาง สถานที่ท่องเที่ยว ร้านอาหารแนะนำ และเส้นทางที่เหมาะสมที่สุดให้อัตโนมัติ!
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-8 py-3.5 rounded-xl transition-all shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-robot"></i> เริ่มสร้างทริปด้วย AI
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Mockup Container -->
+                    <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-2xl backdrop-blur-sm">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3 pb-4 border-b border-slate-700">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                <span class="text-xs text-slate-400 ml-2 font-mono">AI Trip Planner v1.0</span>
+                            </div>
+                            <div class="bg-slate-900/60 p-4 rounded-xl text-sm border border-slate-700/50">
+                                <span class="text-sky-400 font-medium">ผู้ใช้:</span> อยากไปเที่ยวเชียงใหม่ 3 วัน 2 คืน เน้นคาเฟ่กับธรรมชาติ งบ 5,000 บาท
+                            </div>
+                            <div class="bg-sky-950/40 p-4 rounded-xl text-sm border border-sky-800/30 space-y-2">
+                                <span class="text-amber-400 font-medium flex items-center gap-1.5">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> AI กำลังประมวลผลแผนการท่องเที่ยว...
+                                </span>
+                                <ul class="space-y-1 text-slate-300 text-xs pt-2">
+                                    <li>✓ วันที่ 1: เช็คอินแม่ริม แวะคาเฟ่กลางป่า ชิลล์ถนนคนเดิน</li>
+                                    <li>✓ วันที่ 2: ขึ้นดอยอินทนนท์ กิ่วแม่ปาน ชมพระอาทิตย์ตก</li>
+                                    <li>✓ วันที่ 3: เดินเล่นนิมมานฯ ซื้อของฝาก เดินทางกลับ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-sky-500 text-white rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-paper-plane text-lg"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white font-heading">Do A Trip</span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm font-light">
+                        เว็บแอปพลิเคชันรวบรวมข้อมูลท่องเที่ยว 77 จังหวัดทั่วประเทศไทย ช่วยให้การวางแผนเดินทางของคุณง่ายดาย สะดวก และสนุกยิ่งขึ้น
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold font-heading mb-4">เมนูด่วน</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-sky-400 transition-colors">หน้าแรก</a></li>
+                        <li><a href="#regions" class="hover:text-sky-400 transition-colors">ภูมิภาค</a></li>
+                        <li><a href="#provinces" class="hover:text-sky-400 transition-colors">จังหวัดทั้งหมด</a></li>
+                        <li><a href="#ai-planner" class="hover:text-sky-400 transition-colors">AI จัดทริป</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold font-heading mb-4">ติดตามเรา</h4>
+                    <div class="flex gap-4 text-lg">
+                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-sky-500 hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-sky-500 hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-sky-500 hover:text-white transition-all"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-900 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+                <p>&copy; 2026 Do A Trip Project. All rights reserved.</p>
+                <p class="mt-2 sm:mt-0">ออกแบบและพัฒนาสำหรับโครงการ Independent Study (IS)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Menu Script -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
